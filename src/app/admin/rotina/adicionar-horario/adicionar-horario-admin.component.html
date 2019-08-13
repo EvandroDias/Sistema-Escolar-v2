@@ -41,7 +41,7 @@
                       </div>
 
                       <div class="row" style="margin-top: 10px;">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
 
                           <ckeditor [ngModel]="cadastrarHorarioRotinaModel.conteudo" formControlName="conteudo" required
                             [config]="ckeConfig" debounce="500" (change)="onChange($event)">
@@ -63,8 +63,21 @@
 
 
                         </div>
-                        <div class="col-md-8">
-                          <div class="row" *ngIf="horarioRotinaModel?.length > 0">
+
+
+                      </div>
+                      <div style="margin-top: 15px;">
+                        <button style="margin-right: 10px;" type="submit"
+                          class="btn btn-primary btn-flat m-b-30 m-t-30">
+                          Salvar
+                        </button>
+
+                       <button (click)="voltar()" style="margin-right: 10px;" type="text"
+                          class="btn btn-success btn-flat m-b-30 m-t-30">
+                          Voltar
+                        </button>
+                      </div>
+                      <div class="row" *ngIf="horarioRotinaModel?.length > 0">
 
                             <div class="col-lg-12 ">
                               <div class="card">
@@ -84,8 +97,8 @@
                                     <thead>
                                       <tr>
                                         <th  scope="col">Data</th>
-                                        <th  scope="col">Semana</th>
                                         <th  scope="col">Aula</th>
+                                        <th  scope="col">Semana</th>
                                         <th  scope="col">Conteúdo</th>
                                         <th  scope="col">Ações</th>
                                       </tr>
@@ -93,8 +106,9 @@
                                     <tbody>
                                       <tr *ngFor="let item of horarioRotinaModel">
                                         <td>{{item?.dataCadastro | date:"dd/MM/yyyy"}}</td>
-                                        <td>{{item?.nomeSemana | uppercase}}</td>
                                         <td>{{item?.aula | uppercase}}</td>
+                                        <td>{{item?.nomeSemana | uppercase}}</td>
+
                                         <td>
                                           <div [innerHTML]="item.conteudo"></div>
                                         </td>
@@ -112,26 +126,6 @@
                               </div>
                             </div>
                           </div>
-                        </div>
-
-
-                      </div>
-                      <div style="margin-top: 15px;">
-                        <button style="margin-right: 10px;" type="submit"
-                          class="btn btn-primary btn-flat m-b-30 m-t-30">
-                          Salvar
-                        </button>
-
-                        <button (click)="limpar()" style="margin-right: 10px;" type="text"
-                          class="btn btn-dark btn-flat m-b-30 m-t-30">
-                          Limpar
-                        </button>
-
-                        <button (click)="voltar()" style="margin-right: 10px;" type="text"
-                          class="btn btn-success btn-flat m-b-30 m-t-30">
-                          Voltar
-                        </button>
-                      </div>
                     </div>
                   </form>
                 </div>

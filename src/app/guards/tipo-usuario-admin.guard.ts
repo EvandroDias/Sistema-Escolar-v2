@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth/auth-service';
 @Injectable({
   providedIn: 'root'
 })
-export class TipoUsuarioGuard implements CanActivate {
+export class TipoUsuarioAdminGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
@@ -26,19 +26,14 @@ export class TipoUsuarioGuard implements CanActivate {
 
      if(tipo != null){
 
-      //if (tipo.tipoUsuario == "Administrador" && this.authService.autenticado()){
-
-
-      //  return true;
-
-     // }
-
-      if (tipo.tipoUsuario == "Professor" && this.authService.autenticado()){
+      if (tipo.tipoUsuario == "Administrador" && this.authService.autenticado()){
 
 
         return true;
 
       }
+
+
       else{
 
         this.router.navigate(['/login']);

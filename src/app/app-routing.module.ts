@@ -8,6 +8,7 @@ import { HomeAdminComponent } from "./components/home-admin/home-admin.component
 import { TipoUsuarioGuard } from "./guards/tipo-usuario.guard";
 import { HomeProfessorLayoutComponent } from './layouts/home-layout-professor/home-professor-layout.component';
 import { HomeProfessorComponent } from './components/home-professor/home-professor.component';
+import { TipoUsuarioAdminGuard } from "./guards/tipo-usuario-admin.guard";
 
 const appRouting: Routes = [
  /* {
@@ -25,91 +26,91 @@ const appRouting: Routes = [
     ]
   },*/
 
- 
+
   {
     path: "admin",
     component: AdminLayoutComponent,
-     canActivate: [TipoUsuarioGuard],
-     canLoad: [TipoUsuarioGuard],
+     canActivate: [TipoUsuarioAdminGuard],
+     canLoad: [TipoUsuarioAdminGuard],
     children: [
       {
         path: "",
         component: HomeAdminComponent,
-         canActivate: [TipoUsuarioGuard],
-         canLoad: [TipoUsuarioGuard]
+         canActivate: [TipoUsuarioAdminGuard],
+         canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "funcionario",
         loadChildren:
           "../app/admin/funcionario/funcionario-admin.module#FuncionarioAdminModule",
-            canActivate: [TipoUsuarioGuard],
-            canLoad: [TipoUsuarioGuard]
+            canActivate: [TipoUsuarioAdminGuard],
+            canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "aluno",
         loadChildren:
           "../app/admin/aluno/aluno-admin.module#AlunoAdminModule",
-             canActivate: [TipoUsuarioGuard],
-             canLoad: [TipoUsuarioGuard]
+             canActivate: [TipoUsuarioAdminGuard],
+             canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "funcao",
         loadChildren: "../app/admin/funcao/funcao-admin.module#FuncaoAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "serie",
         loadChildren: "../app/admin/serie/serie-admin.module#SerieAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "disciplina",
         loadChildren:
           "../app/admin/disciplina/disciplina-admin.module#DisciplinaAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "departamento",
         loadChildren:
           "../app/admin/departamento/departamento-admin.module#DepartamentoAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "ocorrencia",
         loadChildren:
           "../app/admin/ocorrencia/ocorrencia-admin.module#OcorrenciaAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
 
       {
         path: "tipo-ocorrencia",
         loadChildren:
           "../app/admin/tipo-ocorrencia/tipo-ocorrencia-admin.module#TipoOcorrenciaAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "rotina",
         loadChildren: "../app/admin/rotina/rotina-admin.module#RotinaAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "conselho",
         loadChildren: "../app/admin/conselho/conselho-admin.module#ConselhoAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       },
       {
         path: "turma",
         loadChildren: "../app/admin/turma-admin/turma-admin.module#TurmaAdminModule",
-        canActivate: [TipoUsuarioGuard],
-        canLoad: [TipoUsuarioGuard]
+        canActivate: [TipoUsuarioAdminGuard],
+        canLoad: [TipoUsuarioAdminGuard]
       }
     ]
   },
@@ -141,10 +142,10 @@ const appRouting: Routes = [
     component: LoginLayoutComponent,
     children: [
       {
-        
+
         path: "login",
         component: LoginComponent,
-        
+
       }
     ]
   }

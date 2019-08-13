@@ -7,7 +7,6 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { MessageService } from "primeng/components/common/messageservice";
 import { CadastrarHorarioRotinaModel } from "src/app/model/horario-rotina/cadastrar-horario-rotina.model";
-import { AlterarHorarioRotinaModel } from "src/app/model/horario-rotina/alterar-horario-rotina.model";
 import { DiaSemanaModel } from "src/app/model/dia-da-semana/diaSemana.model";
 import { CommandResultModel } from "src/app/model/command-result.model";
 import { ServicosUtilService } from 'src/app/shared/services/servicos-util.services';
@@ -21,7 +20,6 @@ import { HorarioRotinaService } from "src/app/services/horario-rotina/horario-ro
 })
 export class AdicionarHorarioProfComponent extends BaseFormComponent implements OnInit {
   cadastrarHorarioRotinaModel = new CadastrarHorarioRotinaModel();
-  alterarHorarioRotinaModel = new AlterarHorarioRotinaModel();
 
   mensagem: string = "";
   aulaModel: any;
@@ -30,6 +28,7 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
   admin: boolean = false;
   diaSemanaModel: DiaSemanaModel[] = [];
   response = new CommandResultModel();
+  showSpinner: boolean = false;
 
 
   ckeConfig: any;
@@ -41,12 +40,14 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
       this.formulario.value
     );
 
-    if (
-      this.cadastrarHorarioRotinaModel.horarioRotinaId == null ||
-      this.cadastrarHorarioRotinaModel.horarioRotinaId == undefined
+    if (this.cadastrarHorarioRotinaModel.horarioRotinaId == null || this.cadastrarHorarioRotinaModel.horarioRotinaId == undefined
     ) {
+      console.log('salvar');
+
       this.salvar();
     } else {
+      console.log('alterar');
+
       this.alterar();
     }
   }
@@ -70,10 +71,8 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
 
   ngOnInit() {
 
-
-
     this.ckeConfig = {
-      allowedContent: true,
+      allowedContent: false,
       autoGrow_bottomSpace: 1,
       forcePasteAsPlainText: true,
       width: '100%',
@@ -98,6 +97,8 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
     });
   }
 
+
+
   onChange($event: any): void {
     console.log("onChange");
     //this.log += new Date() + "<br />";
@@ -115,26 +116,11 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
 
   detalhes(id) {
 
-    if (this.admin) {
-      this.detalheAdmin(id);
-    }
-    else {
-      this.detalhe(id);
-    }
+    this.detalhe(id);
+
   }
 
-  detalheAdmin(id) {
-    console.log(id);
 
-    this.horarioRotinaService.detalheAdmin(id).subscribe(
-      r => {
-        console.log(r);
-
-        this.cadastrarHorarioRotinaModel = r;
-      },
-      erro => { }
-    );
-  }
 
   detalhe(id) {
     console.log(id);
@@ -150,24 +136,22 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
   }
 
   alterar() {
-    this.alterarHorarioRotinaModel.aula = this.cadastrarHorarioRotinaModel.aula;
-    this.alterarHorarioRotinaModel.conteudo = this.cadastrarHorarioRotinaModel.conteudo;
-    this.alterarHorarioRotinaModel.diaSemanaId = this.cadastrarHorarioRotinaModel.diaSemanaId;
-    this.alterarHorarioRotinaModel.horarioRotinaId = this.cadastrarHorarioRotinaModel.horarioRotinaId;
-
-    this.horarioRotinaService.alterar(this.alterarHorarioRotinaModel).subscribe(
+    this.showSpinner = true;
+    this.horarioRotinaService.alterar(this.cadastrarHorarioRotinaModel).subscribe(
       r => {
-        this.response = r;
-        console.log(this.response);
 
+        this.response = r;
         this.responseAlerta(this.response);
 
-        this.listarHorario(
-          this.cadastrarHorarioRotinaModel.rotinaId,
-          this.cadastrarHorarioRotinaModel.diaSemanaId
-        );
+        this.listarHorario(this.cadastrarHorarioRotinaModel.rotinaId,this.cadastrarHorarioRotinaModel.diaSemanaId);
+        this.showSpinner = false;
+        this.cadastrarHorarioRotinaModel.horarioRotinaId = null;
+        this.limpar();
+
       },
-      erro => { }
+      erro => {
+        this.showSpinner = false;
+      }
     );
   }
 
@@ -178,6 +162,7 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
   }
 
   salvar() {
+    this.showSpinner = true;
     this.horarioRotinaService
       .salvar(this.cadastrarHorarioRotinaModel)
       .subscribe(
@@ -185,9 +170,11 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
           this.response = r;
           this.responseAlerta(this.response);
           this.listarHorario(this.cadastrarHorarioRotinaModel.rotinaId,this.cadastrarHorarioRotinaModel.diaSemanaId);
+          this.showSpinner = false;
         },
         erro => {
           console.log(erro);
+          this.showSpinner = false;
         }
       );
   }
@@ -227,15 +214,16 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
   }
 
   responseAlerta(response: any) {
+
     if (response.success == false) {
       this.showToast("rotina", "error", "Rotina", response.message);
     } else {
+
+      this.cadastrarHorarioRotinaModel.conteudo = null;
       this.showToast("rotina", "success", "Rotina", response.message);
-
-      this.formulario.reset();
+     this.formulario.reset();
     }
-
-    this.formulario.reset();
+    //this.formulario.reset();
   }
 
   showToast(key, tipo, titulo, mensagem) {
@@ -246,4 +234,5 @@ export class AdicionarHorarioProfComponent extends BaseFormComponent implements 
       detail: mensagem
     });
   }
+
 }

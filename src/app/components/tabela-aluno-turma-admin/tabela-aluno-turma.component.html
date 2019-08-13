@@ -1,0 +1,37 @@
+<div class="card shadow mb-12">
+  <div class="card-header py-3">
+    <input placeholder="Pesquisar" class="form-control" name="pesquisar" [(ngModel)]="f" required />
+  </div>
+  <div class="card-body">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th style="width: 210px;" scope="col">Aluno</th>
+            <th style="width: 210px;" scope="col">Número</th>
+            <th style="width: 210px;" scope="col">Status</th>
+              <th style="width: 50px;" scope="col">Acões</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of alunoModel">
+            <td >{{item?.nome?.toUpperCase()}} {{item?.sobreNome?.toUpperCase()}}</td>
+            <td >{{item?.numero?.toString().toUpperCase()}}</td>
+            <td >{{item?.status?.toUpperCase()}}</td>
+
+            <td>
+              <a *ngIf="mostrar" (click)="detalheAluno(item.id)"  class="btn btn-outline-success"> <i
+                  class="fas fa-edit"></i></a>
+            </td>
+
+          </tr>
+
+
+        </tbody>
+
+
+      </table>
+
+  </div>
+</div>

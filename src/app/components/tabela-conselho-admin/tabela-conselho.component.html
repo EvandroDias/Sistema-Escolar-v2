@@ -1,0 +1,47 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <input placeholder="Pesquisar" class="form-control" name="pesquisar" [(ngModel)]="f" required />
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th scope="col">Série</th>
+            <th scope="col">Bimestre</th>
+            <th scope="col">Professor</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Data Conselho</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of obterOcorrencia()">
+            <td>{{item.nomeSerie | uppercase}}</td>
+            <td>{{item.nomeBimestre | uppercase}}</td>
+            <td>
+              <p>{{item.nomeFuncionario | uppercase}}</p>
+            </td>
+            <td>
+              <p>{{item.nomeAno | uppercase}}</p>
+            </td>
+            <td>{{item.dataConselho | date:"dd/MM/yyyy"}}</td>
+            <td>
+              <a [routerLink]="['/admin/conselho/cadastrar-aluno-conselho',item?.conselhoId,item?.serieId]" class="btn btn-outline-primary">
+                <i class="fa fa-user-circle" aria-hidden="true"></i></a>
+              <a style="margin-left: 5px;" *ngIf="mostrar" [routerLink]="['/admin/conselho/alterar',item?.conselhoId]" class="btn btn-outline-success"> <i
+                  class="fas fa-edit"></i></a>
+                  <a style="margin-left: 5px;" *ngIf="mostrar" (click)="imprimir(item.conselhoId)"  class="btn btn-outline-danger">
+                    <i class="fa fa-print" aria-hidden="true"></i></a>
+            </td>
+
+          </tr>
+
+
+        </tbody>
+
+
+      </table>
+    </div>
+  </div>
+</div>

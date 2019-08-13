@@ -1,0 +1,98 @@
+<div [ng2-loading]="showSpinner">
+  <p-tabView>
+    <p-tabPanel
+      (click)="mudarPerido(false, true, false, item.label)"
+      [header]="item.label"
+      *ngFor="let item of items; let i = index"
+      [selected]="i == 0"
+    >
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="margem" *ngIf="item.label == 'Aluno'">
+            <app-filtro-aluno
+              (respostaOcorrencia)="filtrar($event)"
+              (Imprimir)="impressao($event)"
+              [filtro]="filtro"
+              [habilitarBotaoImprimir]="ocorrenciaModel?.length > 0"
+              [alunoCmbModel]="alunoCmbModel"
+              [tipoOcorrenciaCmbModel]="tipoOcorrenciaCmbModel"
+            ></app-filtro-aluno>
+          </div>
+
+          <div class=" margem" *ngIf="item.label == 'Série'">
+            <app-filtro-serie
+              (respostaOcorrencia)="filtrar($event)"
+              (Imprimir)="impressao($event)"
+              [habilitarBotaoImprimir]="ocorrenciaModel?.length > 0"
+
+              [serieCmbModel]="serieCmbModel"
+              [tipoOcorrenciaCmbModel]="tipoOcorrenciaCmbModel"
+              (ImprimirTotal)="imprimirTotal($event)"
+              [filtro]="filtro"
+            >
+            </app-filtro-serie>
+          </div>
+
+          <div class="margem" *ngIf="item.label == 'Data'">
+            <app-filtro-todos
+              (respostaOcorrencia)="filtrar($event)"
+              (Imprimir)="impressao($event)"
+              [habilitarBotaoImprimir]="ocorrenciaModel?.length > 0"
+              [tipoOcorrenciaCmbModel]="tipoOcorrenciaCmbModel"
+              [filtro]="filtro"
+            >
+            </app-filtro-todos>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+
+
+    <!--<div class="col-lg-12">
+
+    <ul class="nav nav-pills margem">
+                  <li class="nav-item">
+                    <button type="button" [ngClass]="{
+                      'btn-primary':btnData ,
+                      'btn-light' : !btnData
+                    }" class="btn " (click)="mudarPerido(false,true,false,'data')">Data</button>
+                </li>
+                  <li class="nav-item">
+
+                      <button type="button" [ngClass]="{
+                        'btn-primary':btnNomeAluno ,
+                        'btn-light' : !btnNomeAluno
+                      }" class="btn " (click)="mudarPerido(false,false,true,'aluno')">Aluno</button>
+
+                  </li>
+
+        <li class="nav-item">
+          <button type="button" [ngClass]="{
+            'btn-primary':btnSerie ,
+            'btn-light' : !btnSerie
+          }" class="btn " (click)="mudarPerido(true,false,false,'serie')">Série</button>
+
+        </li>
+
+
+
+      </ul>
+
+     </div>-->
+
+        <app-tabela-ocorrencia
+          [ocorrenciaModel]="_ocorrenciaModel"
+        ></app-tabela-ocorrencia>
+
+        <p-paginator
+          [rows]="10"
+          [totalRecords]="_ocorrenciaModel?.length"
+          pageLinkSize="50"
+          (onPageChange)="paginate($event)"
+        ></p-paginator>
+
+
+    <p-messages [(value)]="msgs"></p-messages>
+
+</div>

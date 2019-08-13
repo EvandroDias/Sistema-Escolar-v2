@@ -1,0 +1,112 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header"><strong>Turma</strong></div>
+        <div class="card-body card-block">
+          <div class="row">
+            <div class="col-lg-6">
+              <label for=""> <b>Escola:</b> {{turmaModel?.nomeEscola?.toUpperCase()}}</label>
+            </div>
+            <div class="col-lg-6">
+              <label for=""> <b>Diretor:</b> {{turmaModel?.nomeDiretor?.toUpperCase()}}</label>
+            </div>
+
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-lg-6">
+              <label for=""> <b>Professor:</b> {{turmaModel?.nomeProfessor?.toUpperCase()}}</label>
+            </div>
+            <div class="col-lg-6">
+              <label for=""> <b>Coordenador:</b> {{turmaModel?.nomeCoordenador?.toUpperCase()}}</label>
+            </div>
+
+          </div>
+          <hr>
+          <div class="row">
+
+            <div class="col-lg-4">
+              <label for=""> <b>Série:</b> {{turmaModel?.nomeSerie?.toUpperCase()}}</label>
+            </div>
+
+            <div class="col-lg-4">
+              <label for=""> <b>Sala:</b> {{turmaModel?.nomeSala?.toUpperCase()}}</label>
+            </div>
+            <div class="col-lg-4">
+              <label for=""> <b>Ano</b> {{turmaModel?.nomeAno?.toUpperCase()}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-12">
+      <div class="card" [ng2-loading]="showSpinner">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+          <div class="card-header"><strong>Cadastrar Aluno Turma</strong></div>
+          <div class="card-body card-block">
+            <div class="row">
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6" [ngClass]="aplicaCssErro('alunoId')">
+                <label for="alunoId" class="control-label requiredd">Aluno</label>
+                <select class="form-control" id="alunoId" formControlName="alunoId"
+                  [(ngModel)]="itemTurmaAlunoModel.alunoId">
+                  <option *ngFor="let aluno of alunoCmbModel" [value]="aluno.id">
+                    {{ aluno?.nome?.toUpperCase() }} {{ aluno?.sobreNome?.toUpperCase() }} </option>
+                </select>
+                <app-error-msg [control]="formulario.get('alunoId')" label="Turma"></app-error-msg>
+
+              </div>
+
+              <div class="col-lg-3">
+                <app-input-field class="form-group" formControlName="numero" [classeCss]="aplicaCssErro('numero')"
+                  id="numero" label="Número" [control]="formulario.get('numero')"
+                  [(ngModel)]="itemTurmaAlunoModel.numero" placeholder="Número" [(ngModel)]="itemTurmaAlunoModel.numero"
+                  [classe]="'control-label required'">
+                </app-input-field>
+
+              </div>
+              <div class="col-md-3" [ngClass]="aplicaCssErro('status')">
+                <label for="status" class="control-label requiredd">Status</label>
+                <select class="form-control" id="status" formControlName="status" [(ngModel)]="itemTurmaAlunoModel.status">
+                  <option *ngFor="let p of status" [selected]="p.nome === 'Ativo'" [value]="p.nome">{{ p.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('status')" label="Status"></app-error-msg>
+
+              </div>
+
+            </div>
+
+            <div style="margin-top: 10px;">
+              <button *ngIf="!alterando"  style="margin-right: 10px;" type="submit"
+                class="btn btn-outline-primary btn-flat m-b-30 m-t-30">Salvar</button>
+                <button *ngIf="alterando" style="margin-right: 10px;" type="submit"
+                class="btn btn-outline-primary btn-flat m-b-30 m-t-30">Alterar</button>
+                <a *ngIf="alterando" (click)="cancelou()"  class="btn btn-outline-danger btn-flat m-b-30 m-t-30"
+                >Cancelar</a>
+              <button *ngIf="!alterando" type="submit" class="btn btn-outline-danger btn-flat m-b-30 m-t-30"
+                [routerLink]="'/admin/turma'">Voltar</button>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                  <app-tabela-aluno-turma (respostaAlunoTurma)="detalheAluno($event)" mostrar="true"
+                    [alunoModel]="alunosCadastrados"></app-tabela-aluno-turma>
+                </div>
+              </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

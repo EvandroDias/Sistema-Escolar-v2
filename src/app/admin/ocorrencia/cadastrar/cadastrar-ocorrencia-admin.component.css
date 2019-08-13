@@ -1,0 +1,4 @@
+.requiredd:after {
+    content:" *"; 
+    color: red;
+  }

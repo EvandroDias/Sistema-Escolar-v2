@@ -1,0 +1,120 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/admin" href="">
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">Escola <sup>FAO</sup></div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item">
+    <a class="nav-link" href="" routerLink="/admin">
+      <i class="fa fa-home" aria-hidden="true"></i>
+      <span>Início</span></a>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+ <!--<div class="sidebar-heading">
+    Interface
+  </div>-->
+  <!-- Nav Item - Utilities Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
+      aria-controls="collapseUtilities">
+      <i class="fa fa-address-book" aria-hidden="true"></i>
+      <span>Ocorrência</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Ocorrência:</h6>
+        <a class="collapse-item" href="" [routerLink]="'/admin/ocorrencia/painel'">Painel</a>
+        <a class="collapse-item" href="" [routerLink]="'/admin/ocorrencia'">Relatar</a>
+        <a class="collapse-item" href="" [routerLink]="'/admin/ocorrencia/grafico-ocorrencia'">Gráfico</a>
+        <a class="collapse-item" href="" [routerLink]="'/admin/ocorrencia/metrica-ocorrencia'">Relatório</a>
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#conselho" aria-expanded="true"
+      aria-controls="conselho">
+      <i class="fas fa-child"></i>
+      <span>Conselho</span>
+    </a>
+    <div id="conselho" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Conselho:</h6>
+        <a class="collapse-item" href="" [routerLink]="'/admin/conselho'">Relatar</a>
+
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRotina" aria-expanded="true"
+      aria-controls="collapseRotina">
+      <i class="far fa-address-card"></i>
+      <span>Rotina</span>
+    </a>
+    <div id="collapseRotina" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Rotina:</h6>
+        <a class="collapse-item" href="" [routerLink]="'/admin/rotina'">Cadastrar</a>
+        <a class="collapse-item" href="" [routerLink]="'/admin/rotina/listar-todas'">Listar Todas</a>
+
+      </div>
+    </div>
+  </li>
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+      aria-controls="collapseTwo">
+      <i class="fas fa-plus"></i>
+      <span>Cadastros</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Cadastros:</h6>
+        <a class="collapse-item" href="" routerLink="/admin/funcionario">Funcionário</a>
+        <a class="collapse-item" href="" routerLink="/admin/aluno">Aluno</a>
+        <a class="collapse-item" href="" routerLink="/admin/funcao">Função</a>
+        <a class="collapse-item" href="" routerLink="/admin/serie">Série</a>
+        <a class="collapse-item" href="" routerLink="/admin/departamento">Departamento</a>
+        <a class="collapse-item" href="" routerLink="/admin/disciplina">Disciplina</a>
+        <a class="collapse-item" href="" routerLink="/admin/tipo-ocorrencia">Tipo Ocorrênica</a>
+        <a class="collapse-item" href="" routerLink="/admin/turma">Turma</a>
+
+      </div>
+    </div>
+  </li>
+
+
+
+  <li class="nav-item">
+    <a class="nav-link" (click)="sair()" href="/login">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Sair</span></a>
+  </li>
+
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+
+  <!-- Sidebar Toggler (Sidebar)
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>-->
+
+</ul>
+<!-- End of Sidebar -->
+
+<!-- Content Wrapper -->

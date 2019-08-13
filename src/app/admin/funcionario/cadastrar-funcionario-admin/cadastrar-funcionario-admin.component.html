@@ -1,0 +1,235 @@
+<div class="animated fadeIn" [ng2-loading]="showSpinner">
+
+
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+              <div class="card-header"><strong>Cadastrar Funcionário</strong></div>
+              <div class="card-body card-block">
+                  <div class="row">
+                    <div class="col-lg-6">
+                        <app-input-field class="form-group" formControlName="nome"
+                            [classeCss]="aplicaCssErro('nome')"
+                            id="nome" label="Nome" [control]="formulario.get('nome')"
+                            [(ngModel)]="registrarModel.nome"
+                            placeholder="Digite o nome"
+                            [(ngModel)]="registrarModel.nome"
+                            [classe]="'control-label required'"
+                            >
+                        </app-input-field>
+
+                    </div>
+                    <div class="col-lg-6">
+                            <app-input-field class="form-group required" formControlName="sobreNome"
+                            [classeCss]="aplicaCssErro('sobreNome')"
+                            id="sobreNome" label="SobreNome" [control]="formulario.get('sobreNome')"
+                            placeholder="Digite o sobreNome"
+                            [(ngModel)]="registrarModel.sobreNome"
+                            [classe]="'control-label required'"
+                            >
+
+                        </app-input-field>
+
+                    </div>
+                  </div>
+                  <div class="row">
+
+                            <div class="col-lg-6" [ngClass]="aplicaCssErro('funcao')">
+                                <label for="funcao" class="control-label">Função</label>
+                                <select class="form-control" id="funcao" formControlName="funcao"  [(ngModel)]="registrarModel.funcaoId">
+                                  <option *ngFor="let funcao of funcaoModel" [value]="funcao.id">{{ funcao.nome }}</option>
+                                </select>
+                                <app-error-msg [control]="formulario.get('cidade')" label="Cidade"></app-error-msg>
+
+                          </div>
+                          <div class="col-lg-6" [ngClass]="aplicaCssErro('tipoUsuario')">
+                            <label for="tipoUsuario" class="control-label">Tipo Usuário</label>
+                            <select class="form-control" id="tipoUsuario" formControlName="tipoUsuario"  [(ngModel)]="registrarModel.tipoUsuario">
+                              <option *ngFor="let tipoUsuario of tipoUsuarioModel" [value]="tipoUsuario.nome">{{ tipoUsuario.nome }}</option>
+                            </select>
+                            <app-error-msg [control]="formulario.get('tipoUsuario')" label="tipoUsuario"></app-error-msg>
+
+                      </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="col-lg-3">
+                            <app-input-field class="form-group required" formControlName="rg"
+                                [classeCss]="aplicaCssErro('rg')"
+                                id="rg" label="Rg" [control]="formulario.get('rg')"
+                                placeholder="9999999999"
+                                type="number"
+                                [(ngModel)]="registrarModel.rg"
+                                >
+                            </app-input-field>
+
+                        </div>
+                        <div class="col-lg-3">
+                                <app-input-field class="form-group required" formControlName="cpf"
+                                [classeCss]="aplicaCssErro('cpf')"
+                                id="cpf" label="Cpf" [control]="formulario.get('cpf')"
+                                [(ngModel)]="registrarModel.cpf"
+                                [spMask]="cpf"
+                                [classe]="'control-label required'"
+                                >
+                            </app-input-field>
+
+                        </div>
+                        <div class="col-lg-3">
+                                <app-input-field class="form-group required" formControlName="telefoneFixo"
+                                [classeCss]="aplicaCssErro('telefoneFixo')"
+                                id="telefoneFixo" label="Telefone Fixo" [control]="formulario.get('telefoneFixo')"
+                                [(ngModel)]="registrarModel.telefoneFixo"
+                                [spMask]="telefone"
+                                >
+                            </app-input-field>
+
+                        </div>
+                        <div class="col-lg-3">
+                                <app-input-field class="form-group required" formControlName="celular"
+                                [classeCss]="aplicaCssErro('celular')"
+                                id="celular" label="Celular" [control]="formulario.get('celular')"
+                                [spMask]="celular"
+                                [(ngModel)]="registrarModel.celular"
+                                [classe]="'control-label required'"
+                                >
+                            </app-input-field>
+
+                        </div>
+                      </div>
+
+                      <div class="row">
+                            <div class="col-lg-3">
+                                <app-input-field class="form-group required" formControlName="dataNascimento"
+                                    [classeCss]="aplicaCssErro('dataNascimento')"
+                                    id="dataNascimento" label="Data Nascimento" [control]="formulario.get('dataNascimento')"
+                                    type="date"
+                                    [(ngModel)]="registrarModel.dataNascimento"
+                                    >
+                                </app-input-field>
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                <app-select-field  [classeCss]="aplicaCssErro('sexo')"
+                                [Objeto]="sexos" formControlName="sexo"
+                                 id="sexo" label="Sexo" [control]="formulario.get('sexo')"
+                                 [(ngModel)]="registrarModel.sexo"
+                                 [classe]="'control-label required'"
+                                 >
+                                </app-select-field>
+
+                            </div>
+
+                            <div class="col-lg-3">
+                                    <app-input-field class="form-group required" formControlName="natural"
+                                    [classeCss]="aplicaCssErro('natural')"
+                                    id="natural" label="Natural" [control]="formulario.get('natural')"
+                                    [(ngModel)]="registrarModel.natural"
+                                    >
+                                </app-input-field>
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                    <app-select-field  [classeCss]="aplicaCssErro('nacionalidade')"
+                                    [Objeto]="nacionalidades" formControlName="nacionalidade"
+                                     id="nacionalidade" label="nacionalidade" [control]="formulario.get('nacionalidade')"
+                                     [(ngModel)]="registrarModel.nacionalidade"
+                                     [classe]="'control-label required'"
+                                     >
+                                    </app-select-field>
+
+
+                            </div>
+                          </div>
+
+                          <div class="row">
+
+                                <div class="col-lg-3">
+                                        <app-input-field class="form-group required" formControlName="cep"
+                                        [classeCss]="aplicaCssErro('cep')"
+                                        id="cep" label="cep" [control]="formulario.get('cep')"
+                                        [spMask]="cep"
+                                        [(ngModel)]="registrarModel.cep"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <app-input-field class="form-group required" formControlName="rua"
+                                        [classeCss]="aplicaCssErro('rua')"
+                                        id="rua" label="rua" [control]="formulario.get('rua')"
+                                        [(ngModel)]="registrarModel.rua"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+                                <div class="col-lg-3">
+                                        <app-input-field class="form-group required" formControlName="numero"
+                                        [classeCss]="aplicaCssErro('numero')"
+                                        id="numero" label="numero" [control]="formulario.get('numero')"
+                                        [(ngModel)]="registrarModel.numero"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+                                <div class="col-lg-3">
+                                        <app-input-field class="form-group required" formControlName="bairro"
+                                        [classeCss]="aplicaCssErro('bairro')"
+                                        id="bairro" label="bairro" [control]="formulario.get('bairro')"
+                                        [(ngModel)]="registrarModel.bairro"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+
+                              </div>
+
+                              <div class="row">
+
+
+                                        <div class="col-md-2" [ngClass]="aplicaCssErro('uf')">
+                                            <label for="uf" class="control-label">Estado</label>
+                                            <select class="form-control" id="uf" formControlName="uf"  [(ngModel)]="registrarModel.uf">
+                                              <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.sigla }}</option>
+                                            </select>
+                                            <app-error-msg [control]="formulario.get('uf')" label="Estado"></app-error-msg>
+
+                                          </div>
+
+
+
+                                          <div class="col-md-4" [ngClass]="aplicaCssErro('cidade')">
+                                            <label for="cidade" class="control-label">Cidade</label>
+                                            <select class="form-control" id="cidade" formControlName="cidade"  [(ngModel)]="registrarModel.cidade">
+                                              <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                                            </select>
+                                            <app-error-msg [control]="formulario.get('cidade')" label="Cidade"></app-error-msg>
+
+                                          </div>
+
+                                          <div class="col-md-6" >
+                                            <app-input-field class="form-group " formControlName="email"
+                                            [classeCss]="aplicaCssErro('email')"
+                                            id="email" label="email" [control]="formulario.get('email')"
+                                            [(ngModel)]="registrarModel.email"
+                                            type="email"
+                                            [classe]="'control-label required'"
+                                            >
+                                        </app-input-field>
+                                          </div>
+
+                                  </div>
+
+
+                  <button style="margin-right: 10px;" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Salvar</button>
+                  <button type="submit" class="btn btn-danger btn-flat m-b-30 m-t-30" [routerLink]="'/admin/funcionario'">Cancelar</button>
+                </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+</div>

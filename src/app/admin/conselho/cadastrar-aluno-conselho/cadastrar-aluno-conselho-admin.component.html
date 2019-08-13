@@ -1,0 +1,134 @@
+<div class="animated fadeIn">
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" [ng2-loading]="showSpinner">
+        <form [formGroup]="formulario" (ngSubmit)="submit()" novalidate>
+          <div class="card-header"><strong>Cadastrar Conselho</strong></div>
+          <div class="card-body card-block">
+            <div class="row">
+            </div>
+            <div class="row">
+              <input type="hidden" [(ngModel)]="alunoConselhoModel.alunoConselhoId"
+                [ngModelOptions]="{standalone: true}">
+              <div class="col-lg-12" [ngClass]="aplicaCssErro('alunoId')">
+                <label for="alunoId" class="control-label requiredd">Aluno</label>
+                <select class="form-control" id="alunoId" formControlName="alunoId" (change)="resetar()"
+                  [(ngModel)]="alunoConselhoModel.alunoId">
+                  <option *ngFor="let aluno of alunoCmbModel" [value]="aluno.id">
+                    {{ aluno.nome }} {{aluno.sobreNome}}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('alunoId')" label="Aluno"></app-error-msg>
+
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1" value="Bom aluno">
+                  <label class="form-check-label" for="exampleRadios1">
+                    Bom aluno
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios10" value="Boa aluna.">
+                  <label class="form-check-label" for="exampleRadios10">
+                    Boa aluna
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Bom aluno,é alfabético." [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios2">
+                    Bom aluno,é alfabético.
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios11" value="Boa aluna,é alfabética." [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios11">
+                    Boa aluna,é alfabética.
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="Excelente aluno,é alfabético."  [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios3">
+                    Excelente aluno,é alfabético.
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="Aluno alfabético,com bom rendimento escolar."  [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios4">
+                    Aluno alfabético,com bom rendimento escolar.
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="TE"  [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios5">
+                    TE
+                 </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="Ótimo aluno.Silábico alfabético."  [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios6">
+                    Ótimo aluno.Silábico alfabético.
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios7" value="Ótimo aluno, precisa melhorar a letra. Alfabético."  [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios7">
+                    Ótimo aluno, precisa melhorar a letra. Alfabético.
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios8" value="Rendimento satisfatório."  [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios8">
+                    Rendimento satisfatório.
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios9" value="Rendimento regular."  [ngModelOptions]="{standalone: true}" [(ngModel)]="alunoConselhoModel.descricao" id="exampleRadios1">
+                  <label class="form-check-label" for="exampleRadios9">
+                    Rendimento regular.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+
+                <app-textarea-field [(ngModel)]="alunoConselhoModel.descricao" [cols]=50 [rows]="7"
+                  class="form-group required" formControlName="descricao" [classeCss]="aplicaCssErro('descricao')"
+                  id="descricao" label="" [control]="formulario.get('descricao')" placeholder="Descrição"
+                  [classe]="'control-label'">
+                </app-textarea-field>
+              </div>
+            </div>
+
+            <button style="margin-right: 10px;" type="submit"
+              class="btn btn-outline-primary btn-flat m-b-30 m-t-30">Salvar</button>
+            <button type="submit" class="btn btn-outline-danger btn-flat m-b-30 m-t-30"
+              [routerLink]="'/admin/conselho'">Voltar</button>
+            <hr>
+            <div class="row">
+              <div class="col-lg-12">
+                <app-tabela-aluno-conselho (respostaAlunoConselho)="detalhe($event)" mostrar="true"
+                  [conselhoModel]="alunosConselhoModel"></app-tabela-aluno-conselho>
+              </div>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<p-toast
+  position="top-center"
+  key="f"
+  [style]="{ marginTop: '80px' }"
+></p-toast>

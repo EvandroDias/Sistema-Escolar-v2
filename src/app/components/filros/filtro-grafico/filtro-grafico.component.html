@@ -1,0 +1,51 @@
+
+<div class="col-lg-12">
+  
+  <form [formGroup]="f" (ngSubmit)="filtrar()" novalidate>
+  <div class="row">
+      <div class="col">
+
+         <label>Aluno:</label>
+          <select class="form-control" id="alunoId" formControlName="alunoId"  [(ngModel)]="filtro.alunoId">
+                  <option *ngFor="let item of alunoCmbModel" value="{{item.id}}">{{item.nome}}</option>
+             </select>
+           <app-error-msg [control]="f.get('alunoId')" label="Aluno"></app-error-msg>
+                   
+        </div>
+        <div class="col">
+
+          <label >Tipo Ocorrênica:</label>
+        <select class="form-control" [(ngModel)]="filtro.tipoOcorrenciaId" [ngModelOptions]="{standalone: true}">
+            <option  value="Todos">Todos</option>
+            <option *ngFor="let item of tipoOcorrenciaCmbModel" value="{{item.id}}">{{item.nome}}</option>
+           
+          </select>
+      </div>
+      <div class="col">
+                    
+        <label>De:</label>
+        <input type="date" name="de" [(ngModel)]="filtro.de" class="form-control" formControlName="de" >
+        <app-error-msg [control]="f.get('de')" label="Data"></app-error-msg>
+                      
+      </div>
+      <div class="col">
+           
+        <label for="inputPassword4">Até:</label>
+        <input type="date" name="ate" [(ngModel)]="filtro.ate" class="form-control" [ngModelOptions]="{standalone: true}">
+        
+  </div>
+    
+  </div>
+ 
+ 
+   <div class="row margem-top">
+      <div class="col-0">
+        <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Filtrar</button>
+      </div>
+      <div *ngIf="mostrarBotaoImprimir" class="col-1">
+        <button type="text" [disabled]="" class="btn btn-success" (click)="imprimir()">Imprimir</button>  
+      </div>
+    </div>
+    </form> 
+        
+</div> 

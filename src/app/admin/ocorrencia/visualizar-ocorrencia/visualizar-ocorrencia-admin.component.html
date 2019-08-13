@@ -1,0 +1,59 @@
+<div id="contentToConvert" [ng2-loading]="showSpinner">
+
+    <div class="row centralizar-img">
+      <img src="../../../../assets/cabecalho.PNG" alt="" />
+    </div>
+    <div class="row centralizar-row ">
+      <div class="col-sm-4 "><b class="fonte">Aluno: {{ ocorrenciaModel.nomeAluno }}</b> </div>
+
+      <div class="col-sm-4 ">
+        <b class="fonte">Professor: {{ ocorrenciaModel.nomeFuncionario }}</b>
+      </div>
+
+      <div class="col-sm-4 "><b class="fonte">Período: {{ ocorrenciaModel.periodo }}</b> </div>
+    </div>
+    <div class="row centralizar-row ">
+      <div class="col-sm">
+        <b class="fonte">Tipo: {{ ocorrenciaModel.nomeTipoOcorrencia }}</b>
+      </div>
+
+      <div class="col-sm">
+        <b class="fonte">Data:  {{ ocorrenciaModel.dataOcorrencia | date: "dd/mm/yyyy" }} -
+            {{ ocorrenciaModel.dataOcorrencia | date: "hh:MM:ss" }}</b>
+      </div>
+
+      <div class="col-sm"><b class="fonte">Série: {{ ocorrenciaModel.nomeSerie }}</b> </div>
+    </div>
+
+    <div class="row centralizar-row">
+      <div class="col-sm-10">
+        <b><h4>Ocorrência:</h4></b>
+        <p class="fonte">
+          {{ ocorrenciaModel.descricao }}
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm margem-assinatura">
+        <p>________________________________________</p>
+        <p class="fonte"><b>Professor</b></p>
+      </div>
+      <div class="col-sm margem-assinatura">
+        <p>________________________________________</p>
+        <p class="fonte"><b>Aluno</b></p>
+      </div>
+    </div>
+
+</div>
+<div class="row margem-botao">
+    <div class="col-sm-1">
+        <button class="btn btn-primary" (click)="voltar()">Voltar</button>
+      </div>
+  <div class="col-sm-1 ">
+    <button class="btn btn-success" (click)="imprimir()">
+      Imprimir
+    </button>
+  </div>
+
+</div>

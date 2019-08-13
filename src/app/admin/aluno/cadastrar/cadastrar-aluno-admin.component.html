@@ -1,0 +1,197 @@
+<div class="animated fadeIn">
+
+
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+              <div class="card-header"><strong>Cadastrar Aluno</strong></div>
+              <div class="card-body card-block">
+                  <div class="row">
+                    <div class="col-lg-6">
+                        <app-input-field class="form-group" formControlName="nome"
+                            [classeCss]="aplicaCssErro('nome')"
+                            id="nome" label="Nome" [control]="formulario.get('nome')"
+                            [(ngModel)]="alunoModel.nome"
+                            placeholder="Digite o nome"
+                            [(ngModel)]="alunoModel.nome"
+                            [classe]="'control-label required'"
+                            >
+                        </app-input-field>
+
+                    </div>
+                    <div class="col-lg-6">
+                            <app-input-field class="form-group required" formControlName="sobreNome"
+                            [classeCss]="aplicaCssErro('sobreNome')"
+                            id="sobreNome" label="SobreNome" [control]="formulario.get('sobreNome')"
+                            placeholder="Digite o sobreNome"
+                            [(ngModel)]="alunoModel.sobreNome"
+                            [classe]="'control-label required'"
+                            >
+
+                        </app-input-field>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="col-lg-3">
+                            <app-input-field class="form-group required" formControlName="rm"
+                                [classeCss]="aplicaCssErro('rm')"
+                                id="rm" label="RM" [control]="formulario.get('rm')"
+                                placeholder="9999999999"
+                                type="text"
+                                [(ngModel)]="alunoModel.rm"
+                                >
+                            </app-input-field>
+
+                        </div>
+                        <div class="col-lg-3">
+                                <app-input-field class="form-group required" formControlName="ra"
+                                [classeCss]="aplicaCssErro('ra')"
+                                id="ra" label="RA" [control]="formulario.get('ra')"
+                                [(ngModel)]="alunoModel.ra"
+                                [classe]="'control-label required'"
+                                >
+                            </app-input-field>
+
+                        </div>
+
+
+                      </div>
+
+                      <div class="row">
+                            <div class="col-lg-3">
+                                <app-input-field class="form-group required" formControlName="dataNascimento"
+                                    [classeCss]="aplicaCssErro('dataNascimento')"
+                                    id="dataNascimento" label="Data Nascimento" [control]="formulario.get('dataNascimento')"
+                                    type="date"
+                                    [(ngModel)]="alunoModel.dataNascimento"
+                                    >
+                                </app-input-field>
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                <app-select-field  [classeCss]="aplicaCssErro('sexo')"
+                                [Objeto]="sexos" formControlName="sexo"
+                                 id="sexo" label="Sexo" [control]="formulario.get('sexo')"
+                                 [(ngModel)]="alunoModel.sexo"
+                                 [classe]="'control-label required'"
+                                 >
+                                </app-select-field>
+
+                            </div>
+
+                            <div class="col-lg-3">
+                                    <app-input-field class="form-group required" formControlName="natural"
+                                    [classeCss]="aplicaCssErro('natural')"
+                                    id="natural" label="Natural" [control]="formulario.get('natural')"
+                                    [(ngModel)]="alunoModel.natural"
+                                    >
+                                </app-input-field>
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                    <app-select-field  [classeCss]="aplicaCssErro('nacionalidade')"
+                                    [Objeto]="nacionalidades" formControlName="nacionalidade"
+                                     id="nacionalidade" label="nacionalidade" [control]="formulario.get('nacionalidade')"
+                                     [(ngModel)]="alunoModel.nacionalidade"
+                                     [classe]="'control-label required'"
+                                     >
+                                    </app-select-field>
+
+
+                            </div>
+                          </div>
+
+                          <div class="row">
+
+                                <div class="col-lg-3">
+                                        <app-input-field class="form-group required" formControlName="cep"
+                                        [classeCss]="aplicaCssErro('cep')"
+                                        id="cep" label="cep" [control]="formulario.get('cep')"
+                                        [spMask]="cep"
+                                        [(ngModel)]="alunoModel.cep"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <app-input-field class="form-group required" formControlName="rua"
+                                        [classeCss]="aplicaCssErro('rua')"
+                                        id="rua" label="rua" [control]="formulario.get('rua')"
+                                        [(ngModel)]="alunoModel.rua"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+                                <div class="col-lg-3">
+                                        <app-input-field class="form-group required" formControlName="numero"
+                                        [classeCss]="aplicaCssErro('numero')"
+                                        id="numero" label="numero" [control]="formulario.get('numero')"
+                                        [(ngModel)]="alunoModel.numero"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+                                <div class="col-lg-3">
+                                        <app-input-field class="form-group required" formControlName="bairro"
+                                        [classeCss]="aplicaCssErro('bairro')"
+                                        id="bairro" label="bairro" [control]="formulario.get('bairro')"
+                                        [(ngModel)]="alunoModel.bairro"
+                                        >
+                                    </app-input-field>
+
+                                </div>
+
+                              </div>
+
+                              <div class="row">
+
+
+                                        <div class="col-md-2" [ngClass]="aplicaCssErro('uf')">
+                                            <label for="uf" class="control-label">Estado</label>
+                                            <select class="form-control" id="uf" formControlName="uf"  [(ngModel)]="alunoModel.uf">
+                                              <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.sigla }}</option>
+                                            </select>
+                                            <app-error-msg [control]="formulario.get('uf')" label="Estado"></app-error-msg>
+
+                                          </div>
+
+
+
+                                          <div class="col-md-4" [ngClass]="aplicaCssErro('cidade')">
+                                            <label for="cidade" class="control-label">Cidade</label>
+                                            <select class="form-control" id="cidade" formControlName="cidade"  [(ngModel)]="alunoModel.cidade">
+                                              <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                                            </select>
+                                            <app-error-msg [control]="formulario.get('cidade')" label="Cidade"></app-error-msg>
+
+                                          </div>
+
+
+                                          <div class="col-lg-3">
+                                            <app-input-field class="form-group required" formControlName="racaCor"
+                                            [classeCss]="aplicaCssErro('racaCor')"
+                                            id="racaCor" label="racaCor" [control]="formulario.get('racaCor')"
+                                            [(ngModel)]="alunoModel.racaCor"
+                                            >
+                                        </app-input-field>
+
+                                    </div>
+
+
+                                  </div>
+
+
+                  <button style="margin-right: 10px;" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Salvar</button>
+                  <button type="submit" class="btn btn-danger btn-flat m-b-30 m-t-30" [routerLink]="'/admin/aluno'">Cancelar</button>
+                </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+</div>

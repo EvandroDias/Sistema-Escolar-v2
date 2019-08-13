@@ -1,0 +1,105 @@
+<p-accordion  >
+  <p-accordionTab
+    (click)="openPrev(item.rotinaId,$event)"
+    header="{{ item.nomeFuncionario | uppercase }} - {{
+      item.nomeSerie | uppercase
+    }} - {{ item.de | date: 'dd/MM/yyyy' }} a {{
+      item.ate | date: 'dd/MM/yyyy'
+    }}"
+    *ngFor="let item of rotinasModel"
+  >
+
+<!------------------------------------------>
+
+<div class="row" *ngIf="rotinasModel?.length > 0" >
+
+  <div class="col-lg-12 ">
+      <div class="card">
+          <div class="row">
+
+            </div>
+
+
+          <div class="card-body">
+              <table class="table">
+                  <thead>
+                      <tr>
+                        <th scope="col">Funcionário</th>
+                        <th scope="col">Série</th>
+                        <th scope="col">De</th>
+                        <th scope="col">Até</th>
+                        <th scope="col">Ações</th>
+
+                    </tr>
+                </thead>
+                <tbody >
+                  <tr>
+                      <td>{{item?.nomeFuncionario | uppercase}}</td>
+                      <td>{{item?.nomeSerie | uppercase}}</td>
+                      <td><p>{{item?.de | date:"dd/MM/yyyy" }}</p></td>
+                      <td>{{item?.ate | date:"dd/MM/yyyy"}}</td>
+
+                      <td><a  [routerLink]="['/admin/rotina/visualizar-horario',item?.rotinaId,true]" class="btn btn-outline-primary"> <i class="fa fa-plus" ></i></a>
+                      - <a (click)="imprimir(item.rotinaId)" class="btn btn-outline-secondary"> <i class="fa fa-print"  ></i></a>
+
+                      </td>
+
+
+                  </tr>
+
+
+              </tbody>
+
+          </table>
+
+
+      </div>
+  </div>
+</div>
+</div>
+<!----------------------------------------->
+
+
+
+
+
+    <div class="row" [ng2-loading]="showSpinner">
+      <div class="col-lg-12 " *ngIf="horarioRotinaModel?.length > 0">
+
+          <div class="row">
+
+              <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                              <th width="60px" class="table-dark" scope="row">Horário</th>
+                              <th class="table-dark" scope="row">2°FEIRA</th>
+                              <th class="table-dark" scope="row">3°FEIRA</th>
+                              <th class="table-dark" scope="row">4°FEIRA</th>
+                              <th class="table-dark" scope="row">5°FEIRA</th>
+                              <th class="table-dark" scope="row">6°FEIRA</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr *ngFor="let item of horarioRotinaModel">
+
+                                <th scope="row">{{item[0].aula}}</th>
+
+                                <td scope="row" *ngFor="let i of item" ><div [innerHTML]="i.conteudo"></div></td>
+
+                            </tr>
+                          </tbody>
+                    </table>
+                  </div>
+                </div>
+
+
+          </div>
+
+      </div>
+    </div>
+    <p-messages [(value)]="msgs"></p-messages>
+  </p-accordionTab>
+</p-accordion>

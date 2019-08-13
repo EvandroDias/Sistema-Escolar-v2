@@ -1,0 +1,111 @@
+<div class="animated fadeIn">
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" [ng2-loading]="showSpinner">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+          <div class="card-header"><strong>Cadastrar Conselho</strong></div>
+          <div class="card-body card-block">
+            <div class="row">
+
+
+            </div>
+
+
+            <div class="row">
+              <div class="col-lg-4" [ngClass]="aplicaCssErro('nomeDiretor')">
+                <label for="nomeDiretor" class="control-label requiredd">Diretor</label>
+                <select class="form-control" id="nomeDiretor" formControlName="nomeDiretor"
+                  [(ngModel)]="conselhoModel.nomeDiretor">
+                  <option *ngFor="let diretor of diretorCmbModel" [value]="diretor.nome">{{ diretor.nome }}
+                  </option>
+                </select>
+                <app-error-msg [control]="formulario.get('nomeDiretor')" label="Diretor"></app-error-msg>
+              </div>
+              <div class="col-lg-4" [ngClass]="aplicaCssErro('funcionarioId')">
+                <label for="funcionarioId" class="control-label requiredd">Professor</label>
+                <select class="form-control" id="funcionario" formControlName="funcionarioId"
+                  [(ngModel)]="conselhoModel.funcionarioId">
+                  <option *ngFor="let funcionario of funcionarioCmbModel" [value]="funcionario.id">
+                    {{ funcionario.nome }} {{funcionario.sobreNome}}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('funcionarioId')" label="Professor"></app-error-msg>
+
+              </div>
+              <div class="col-lg-4" [ngClass]="aplicaCssErro('nomeCoordenador')">
+                <label for="nomeCoordenador" class="control-label requiredd">Coordenador</label>
+                <select class="form-control" id="nomeCoordenador" formControlName="nomeCoordenador"
+                  [(ngModel)]="conselhoModel.nomeCoordenador">
+                  <option *ngFor="let funcionario of coordenadorCmbModel" [value]="funcionario.nome">
+                    {{ funcionario.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('nomeCoordenador')" label="Professor"></app-error-msg>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4" [ngClass]="aplicaCssErro('serieId')">
+                <label for="serieId" class="control-label requiredd">Série</label>
+                <select class="form-control" id="serieId" formControlName="serieId" [(ngModel)]="conselhoModel.serieId">
+                  <option *ngFor="let serie of serieCmbModel" [value]="serie.id">{{ serie.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('serieId')" label="Série"></app-error-msg>
+
+              </div>
+
+
+
+              <div class="col-md-4" [ngClass]="aplicaCssErro('anoId')">
+                <label for="anoId" class="control-label requiredd">Ano</label>
+                <select class="form-control" id="bimestre" formControlName="anoId" [(ngModel)]="conselhoModel.anoId">
+                  <option *ngFor="let ano of anoCmbModel" [value]="ano.id">{{ ano.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('anoId')" label="Ano"></app-error-msg>
+
+              </div>
+              <div class="col-md-4" [ngClass]="aplicaCssErro('bimestreId')">
+                <label for="bimestreId" class="control-label requiredd">Bimestre</label>
+                <select class="form-control" id="bimestre" formControlName="bimestreId"
+                  [(ngModel)]="conselhoModel.bimestreId">
+                  <option *ngFor="let bimestre of bimestreModel" [value]="bimestre.id">{{ bimestre.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('bimestreId')" label="Bimestre"></app-error-msg>
+
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <app-input-field class="form-group " formControlName="dataConselho"
+                  [classeCss]="aplicaCssErro('dataConselho')" id="dataConselho" label="Data Conselho"
+                  [control]="formulario.get('dataConselho')" [(ngModel)]="conselhoModel.dataConselho" type="date"
+                  [classe]="'control-label required'">
+                </app-input-field>
+              </div>
+
+
+            </div>
+
+
+            <!--<div class="row">
+              <div class="col-lg-12">
+                <app-textarea-field [cols]=50 [rows]="7" class="form-group required" formControlName="descricao"
+                  [classeCss]="aplicaCssErro('descricao')" id="descricao" label="Conselho"
+                  [control]="formulario.get('descricao')" placeholder="Descrição" [(ngModel)]="conselhoModel.descricao"
+                  [classe]="'control-label'"></app-textarea-field>
+              </div>
+            </div>-->
+
+            <button style="margin-right: 10px;" type="submit"
+              class="btn btn-outline-primary btn-flat m-b-30 m-t-30">Salvar</button>
+            <button type="submit" class="btn btn-outline-danger btn-flat m-b-30 m-t-30"
+              [routerLink]="'/admin/conselho'">Voltar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

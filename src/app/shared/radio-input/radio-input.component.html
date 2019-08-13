@@ -1,0 +1,15 @@
+<div class="row form-group">
+  <div class="col col-md-4"><strong class="card-title">{{titulo}}</strong></div>
+  <div class="col col-md-8">
+      <div class="form-check-inline form-check">
+          <label for="inline-radio1" class="form-check-label ">
+              <input type="radio" name="Ativo" (change)="mudou()"  [(ngModel)]="status"  name="inline-radios" value="true" class="form-check-input"> Ativo
+          </label>
+          -
+          <label for="inline-radio2" class="form-check-label ">
+              <input type="radio" name="Ativo" (change)="mudou()" [(ngModel)]="status" name="inline-radios" value="false" class="form-check-input"> Não Ativo
+          </label>
+       
+      </div>
+  </div>
+</div>

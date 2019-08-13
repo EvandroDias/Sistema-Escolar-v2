@@ -1,0 +1,8 @@
+<div  [ngClass]="classeCss">
+  <label for="label" [class]="classe">{{ label }}</label>
+<select class="form-control" [attr.for]="id"  [(ngModel)]="value"   >
+    <option *ngFor="let item of Objeto " [ngValue]="item.nome">{{ item?.nome}}</option>
+  </select>
+  <app-error-msg [control]="control" [label]="label"></app-error-msg>
+ 
+</div>

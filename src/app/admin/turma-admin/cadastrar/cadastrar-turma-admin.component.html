@@ -1,0 +1,155 @@
+<div class="animated fadeIn">
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" [ng2-loading]="showSpinner">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+          <div class="card-header"><strong>Cadastrar Turma</strong></div>
+          <div class="card-body card-block">
+            <div class="row">
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-6" [ngClass]="aplicaCssErro('escolaId')">
+                <label for="escolaId" class="control-label requiredd">Escola</label>
+                <select class="form-control" id="escolaId" formControlName="escolaId" [(ngModel)]="turmaModel.escolaId">
+                  <option *ngFor="let escola of escolaCmbModel" [value]="escola.id">{{ escola.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('escolaId')" label="escola"></app-error-msg>
+
+              </div>
+              <div class="col-md-6" [ngClass]="aplicaCssErro('departamentoId')">
+                <label for="departamentoId" class="control-label requiredd">Sala</label>
+                <select class="form-control" id="departamentoId" formControlName="departamentoId"
+                  [(ngModel)]="turmaModel.departamentoId">
+                  <option *ngFor="let departamento of departamentoCmbModel" [value]="departamento.id">
+                    {{ departamento.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('departamentoId')" label="Sala"></app-error-msg>
+
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-4" [ngClass]="aplicaCssErro('nomeDiretor')">
+                <label for="nomeDiretor" class="control-label requiredd">Diretor</label>
+                <select class="form-control" id="nomeDiretor" formControlName="nomeDiretor"
+                  [(ngModel)]="turmaModel.nomeDiretor">
+                  <option *ngFor="let diretor of diretorCmbModel" [value]="diretor.nome">{{ diretor.nome }}
+                  </option>
+                </select>
+                <app-error-msg [control]="formulario.get('nomeDiretor')" label="Diretor"></app-error-msg>
+              </div>
+              <div class="col-lg-4" [ngClass]="aplicaCssErro('funcionarioId')">
+                <label for="funcionarioId" class="control-label requiredd">Professor</label>
+                <select class="form-control" id="funcionario" formControlName="funcionarioId"
+                  [(ngModel)]="turmaModel.funcionarioId">
+                  <option *ngFor="let funcionario of funcionarioCmbModel" [value]="funcionario.id">
+                    {{ funcionario.nome }} {{funcionario.sobreNome}}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('funcionarioId')" label="Professor"></app-error-msg>
+
+              </div>
+              <div class="col-lg-4" [ngClass]="aplicaCssErro('nomeCoordenador')">
+                <label for="nomeCoordenador" class="control-label requiredd">Coordenador</label>
+                <select class="form-control" id="nomeCoordenador" formControlName="nomeCoordenador"
+                  [(ngModel)]="turmaModel.nomeCoordenador">
+                  <option *ngFor="let funcionario of coordenadorCmbModel" [value]="funcionario.nome">
+                    {{ funcionario.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('nomeCoordenador')" label="Professor"></app-error-msg>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3" [ngClass]="aplicaCssErro('serieId')">
+                <label for="serieId" class="control-label requiredd">Série</label>
+                <select class="form-control" id="serieId" formControlName="serieId" [(ngModel)]="turmaModel.serieId">
+                  <option *ngFor="let serie of serieCmbModel" [value]="serie.id">{{ serie.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('serieId')" label="Série"></app-error-msg>
+
+              </div>
+
+
+
+              <div class="col-md-3" [ngClass]="aplicaCssErro('anoId')">
+                <label for="anoId" class="control-label requiredd">Ano</label>
+                <select class="form-control" id="bimestre" formControlName="anoId" [(ngModel)]="turmaModel.anoId">
+                  <option *ngFor="let ano of anoCmbModel" [value]="ano.id">{{ ano.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('anoId')" label="Ano"></app-error-msg>
+
+              </div>
+
+              <div class="col-md-3" [ngClass]="aplicaCssErro('periodo')">
+                <label for="periodo" class="control-label requiredd">Período</label>
+                <select class="form-control" id="periodo" formControlName="periodo" [(ngModel)]="turmaModel.periodo">
+                  <option *ngFor="let p of periodos" [value]="p.nome">{{ p.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('periodo')" label="Periodo"></app-error-msg>
+
+              </div>
+              <div class="col-md-3" [ngClass]="aplicaCssErro('ensino')">
+                <label for="ensino" class="control-label requiredd">Ensino</label>
+                <select class="form-control" id="ensino" formControlName="ensino" [(ngModel)]="turmaModel.ensino">
+                  <option *ngFor="let p of ensinos" [value]="p.nome">{{ p.nome }}</option>
+                </select>
+                <app-error-msg [control]="formulario.get('periodo')" label="Periodo"></app-error-msg>
+
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <app-input-field class="form-group" formControlName="qtdAulas1Bimestre"
+                  [classeCss]="aplicaCssErro('qtdAulas1Bimestre')" id="qtdAulas1Bimestre"
+                  label="Qtd. aulas do 1°Bimestre" [control]="formulario.get('qtdAulas1Bimestre')"
+                  [(ngModel)]="turmaModel.qtdAulas1Bimestre" placeholder="Qtd."
+                  [(ngModel)]="turmaModel.qtdAulas1Bimestre" [classe]="'control-label required'">
+                </app-input-field>
+
+              </div>
+              <div class="col-lg-3">
+                <app-input-field class="form-group" formControlName="qtdAulas2Bimestre"
+                  [classeCss]="aplicaCssErro('qtdAulas2Bimestre')" id="qtdAulas2Bimestre"
+                  label="Qtd. aulas do 2°Bimestre" [control]="formulario.get('qtdAulas2Bimestre')"
+                  [(ngModel)]="turmaModel.qtdAulas2Bimestre" placeholder="Qtd."
+                  [(ngModel)]="turmaModel.qtdAulas2Bimestre" [classe]="'control-label required'">
+                </app-input-field>
+
+              </div>
+              <div class="col-lg-3">
+                <app-input-field class="form-group" formControlName="qtdAulas3Bimestre"
+                  [classeCss]="aplicaCssErro('qtdAulas3Bimestre')" id="qtdAulas3Bimestre"
+                  label="Qtd. aulas do 3°Bimestre" [control]="formulario.get('qtdAulas3Bimestre')"
+                  [(ngModel)]="turmaModel.qtdAulas3Bimestre" placeholder="Qtd."
+                  [(ngModel)]="turmaModel.qtdAulas3Bimestre" [classe]="'control-label required'">
+                </app-input-field>
+
+              </div>
+              <div class="col-lg-3">
+                <app-input-field class="form-group" formControlName="qtdAulas4Bimestre"
+                  [classeCss]="aplicaCssErro('qtdAulas4Bimestre')" id="qtdAulas4Bimestre"
+                  label="Qtd. aulas do 4°Bimestre" [control]="formulario.get('qtdAulas4Bimestre')"
+                  [(ngModel)]="turmaModel.qtdAulas4Bimestre" placeholder="Qtd."
+                  [(ngModel)]="turmaModel.qtdAulas4Bimestre" [classe]="'control-label required'">
+                </app-input-field>
+
+              </div>
+            </div>
+
+
+            <button style="margin-right: 10px;" type="submit"
+              class="btn btn-outline-primary btn-flat m-b-30 m-t-30">Salvar</button>
+            <button type="submit" class="btn btn-outline-danger btn-flat m-b-30 m-t-30"
+              [routerLink]="'/admin/turma'">Voltar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,31 @@
+.margem-botao {
+  margin-top: 50px;
+  margin-left: 100px;
+
+}
+
+.centralizar-img{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.centralizar-row{
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-left: 100px;
+  width: 100%;
+}
+
+.margem-assinatura {
+  margin-top: 100px;
+  text-align: center;
+}
+.fonte{
+  font-size: 1.3em;
+  text-justify: distribute;
+  line-height: 2  ;
+}

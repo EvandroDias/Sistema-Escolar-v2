@@ -1,0 +1,152 @@
+<div class="row" class="animated fadeIn" [ng2-loading]="showSpinner">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header"><strong>Cadastrar Conteúdo</strong></div>
+      <div class="card-body">
+        <p class="text-muted m-b-15">
+
+        </p>
+
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item" *ngFor="let item of diaSemanaModel">
+            <a class="nav-link" [ngClass]="{ active: item?.nome == 'Segunda' }" id="{{item?.diaSemanaId}}"
+              data-toggle="pill" href="#pills-{{item?.diaSemanaId}}" role="tab" aria-controls='pills-item.id'
+              aria-selected="true" (click)="atualizarDiasSemanaId(item?.diaSemanaId)">{{ item.nome }}</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div *ngFor="let item of diaSemanaModel" [ngClass]="{ 'show active': item?.nome == 'Segunda' }"
+            class="tab-pane fade" id="pills-{{ item?.diaSemanaId }}" role="tabpanel"
+            aria-labelledby="pills-item.id-tab">
+
+            <div *ngIf="!showSpinner" class="row animated fadeIn">
+              <div class="col-lg-12">
+                <div class="card">
+                  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+
+                    <div class="card-body card-block">
+
+
+                      <div class="row">
+                        <div class="col-md-12" [ngClass]="aplicaCssErro('aula')">
+                          <label for="aula" class="control-label requiredd">Aula</label>
+                          <select class="form-control" id="aula" formControlName="aula"
+                            [(ngModel)]="cadastrarHorarioRotinaModel.aula">
+                            <option *ngFor="let aula of aulaModel" [value]="aula.nome">{{ aula?.nome }}</option>
+                          </select>
+                          <app-error-msg [control]="formulario.get('aula')" label="Aula"></app-error-msg>
+                        </div>
+
+
+                      </div>
+
+                      <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-4">
+
+                          <ckeditor [ngModel]="cadastrarHorarioRotinaModel.conteudo" formControlName="conteudo" required
+                            [config]="ckeConfig" debounce="500" (change)="onChange($event)">
+                          </ckeditor>
+
+
+                          <!-- <app-input-field
+                          class="form-group "
+                          formControlName="conteudo"
+                          [classeCss]="aplicaCssErro('conteudo')"
+                          id="conteudo"
+                          label="conteudo:"
+                          [control]="formulario.get('conteudo')"
+                          [(ngModel)]="cadastrarHorarioRotinaModel.conteudo"
+                          type="text"
+                          [classe]="'control-label required'"
+                        >
+                        </app-input-field>-->
+
+
+                        </div>
+                        <div class="col-md-8">
+                          <div class="row" *ngIf="horarioRotinaModel?.length > 0">
+
+                            <div class="col-lg-12 ">
+                              <div class="card">
+                                <div class="row">
+
+                                </div>
+
+
+                                <div class="card-header">
+
+                                </div>
+                                <div class="card-body">
+
+                                  <table id="example" class="table display dataTable dtr-inline" cellspacing="0"
+                                    width="100%" role="grid" aria-describedby="example_info"
+                                    style="width: 100%;table-layout:fixed">
+                                    <thead>
+                                      <tr>
+                                        <th  scope="col">Data</th>
+                                        <th  scope="col">Semana</th>
+                                        <th  scope="col">Aula</th>
+                                        <th  scope="col">Conteúdo</th>
+                                        <th  scope="col">Ações</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let item of horarioRotinaModel">
+                                        <td>{{item?.dataCadastro | date:"dd/MM/yyyy"}}</td>
+                                        <td>{{item?.nomeSemana | uppercase}}</td>
+                                        <td>{{item?.aula | uppercase}}</td>
+                                        <td>
+                                          <div [innerHTML]="item.conteudo"></div>
+                                        </td>
+                                        <td><a (click)="detalhes(item.horarioRotinaId)" class="btn btn-outline-primary">
+                                            <i class="far fa-edit"></i></a></td>
+                                      </tr>
+
+
+                                    </tbody>
+
+                                  </table>
+
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                      <div style="margin-top: 15px;">
+                        <button style="margin-right: 10px;" type="submit"
+                          class="btn btn-primary btn-flat m-b-30 m-t-30">
+                          Salvar
+                        </button>
+
+                        <button (click)="limpar()" style="margin-right: 10px;" type="text"
+                          class="btn btn-dark btn-flat m-b-30 m-t-30">
+                          Limpar
+                        </button>
+
+                        <button (click)="voltar()" style="margin-right: 10px;" type="text"
+                          class="btn btn-success btn-flat m-b-30 m-t-30">
+                          Voltar
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<p-toast position='top-center' key='rotina' [style]="{marginTop: '80px'}"></p-toast>

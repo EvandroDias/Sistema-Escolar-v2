@@ -1,0 +1,41 @@
+   <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <input placeholder="Pesquisar" class="form-control" name="pesquisar"  [(ngModel)]="f" required/>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="250px" scope="col">Aluno</th>
+                      <th width="100px" scope="col">Titulo</th>
+                      <th scope="col">Ocorrência</th>
+                      <th scope="col">Data Ocorrência</th>
+                      <th width="170px" scope="col">Ações</th>
+                   </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let item of obterOcorrencia()">
+                    <td>{{item.nomeAluno | uppercase}}</td>
+                    <td>{{item.titulo | uppercase}}</td>
+                    <td><p>{{item.descricao }}</p></td>
+                    <td>{{item.dataOcorrencia | date:"dd/MM/yyyy"}}</td>
+                    <td>
+                      <a [routerLink]="['/admin/ocorrencia/visualizar',item?.ocorrenciaId]" class="btn btn-outline-primary"> <i class="fa" [ngClass]="{' fa-eye': item.visualizada == false,'fa-eye-slash': item.visualizada == true}" ></i></a>
+                      <a *ngIf="mostrar" style="margin-left: 5px;"  [routerLink]="['/admin/ocorrencia/alterar',item?.ocorrenciaId]" class="btn btn-outline-success"> <i class="far fa-edit"></i></a>
+                      <a *ngIf="mostrar" style="margin-left: 5px;"  (click)="Desativar(item?.ocorrenciaId)"  class="btn btn-outline-danger"> <i class="fas fa-trash-alt"></i></a>
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+
+                </table>
+              </div>
+            </div>
+</div>
+
+
+

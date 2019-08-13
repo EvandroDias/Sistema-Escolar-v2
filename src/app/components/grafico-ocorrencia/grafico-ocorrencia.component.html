@@ -1,0 +1,26 @@
+<div class="row" >
+
+  <div class="col-md-12">
+
+        <div class="margem" style="display: block">
+          <canvas baseChart width="800" height="300"
+                  [datasets]="Data"
+                  [labels]="Labels"
+                  [options]="Options"
+                  [legend]="Legend"
+                  [chartType]="Type"
+                  (chartHover)="Hovered($event)"
+                  (chartClick)="Clicked($event)"></canvas>
+        </div>
+
+      </div>
+</div>
+<div class="row ">
+    <div class="col-sm-1">
+
+      </div>
+  <div class="col-sm-1 ">
+
+  </div>
+
+</div>

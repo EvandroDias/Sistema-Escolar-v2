@@ -1,0 +1,78 @@
+<div class="row" [ng2-loading]="dadosModel.showSpinner">
+
+  <div class="col-lg-12 ">
+      <div class="card">
+          <div class="row">
+
+            </div>
+            <div class="row" >
+
+                  <div class="col-lg-8"  >
+                          <button style="margin: 30px;" [routerLink]="'/admin/departamento/cadastrar'" class="btn btn-primary ">Cadastrar</button>
+                        </div>
+              <div class="form-group col-sm-4 pull-right" >
+
+                <input placeholder="Pesquisar"  class="form-control" name="pesquisar" [(ngModel)]="dadosModel.filtro" required/>
+
+              </div>
+
+            </div>
+
+
+          <div class="container-fluid" >
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <app-radio-input (alterou)="alterou($event)" [status]="dadosModel.status"  titulo="Funcionário" ></app-radio-input>
+              </div>
+
+              <div class="card-body" *ngIf="_departamentoModel?.length > 0">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+
+                        <th scope="col">Nome</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let item of _departamentoModel">
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.status == true ? "Ativo" : "Desativado" }}</td>
+                    <td><a  [routerLink]="['/admin/departamento/alterar',item.id]" class="btn btn-primary"> <i class="fa fa-edit"></i></a>
+                      <a style="margin-left:10px" (click)="confirm(item.id,item.status)" class="btn" [ngClass]="{' btn-success': item.status === false,' btn-danger':item.status === true}" ><i class="fa" [ngClass]="{'fa-times-circle': item.status , 'fa-check': !item.status }"></i> </a></td>
+                  </tr>
+
+
+              </tbody>
+                  </table>
+                </div>
+                <p-paginator [rows]="dadosModel.qtdPagina" [totalRecords]="departamentoModel?.length" pageLinkSize="5" (onPageChange)="paginate($event)"></p-paginator>
+
+              </div>
+            </div>
+          </div>
+
+
+  </div>
+</div>
+</div>
+
+<p-confirmDialog #cd header="Confirma" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" label="Não" (click)="cd.reject()" ></button>
+    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="cd.accept()" ></button>
+</p-footer>
+</p-confirmDialog>
+
+<p-toast position='top-center' key='f' [style]="{marginTop: '80px'}"></p-toast>
+
+
+
+
+
+
+
+

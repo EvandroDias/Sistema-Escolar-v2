@@ -1,0 +1,147 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+          <div class="card-header"><strong>Cadastrar Rotina</strong></div>
+          <div class="card-body card-block">
+
+
+            <div class="row">
+              <div class="col-md-12" [ngClass]="aplicaCssErro('serieId')">
+                <label for="serieId" class="control-label requiredd"
+                  >Série</label
+                >
+                <select
+                  class="form-control"
+                  id="serieId"
+                  formControlName="serieId"
+                  [(ngModel)]="cadastrarRotinaModel.serieId"
+                >
+                  <option
+                    *ngFor="let serie of serieCmbModel"
+                    [value]="serie.id"
+                    >{{ serie.nome }}</option
+                  >
+                </select>
+                <app-error-msg
+                  [control]="formulario.get('serieId')"
+                  label="Série"
+                ></app-error-msg>
+              </div>
+
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <!--<app-input-field
+                  class="form-group "
+                  formControlName="de"
+                  [classeCss]="aplicaCssErro('de')"
+                  id="de"
+                  label="De:"
+                  [control]="formulario.get('de')"
+                  [(ngModel)]="cadastrarRotinaModel.de"
+                  type="date"
+                  [classe]="'control-label required'"
+                >
+                </app-input-field>-->
+                <div class="margem">
+                    <label for="de">De: </label>
+                    <p-calendar  [locale]="pt" dateFormat = "dd/mm/yy"  required formControlName="de" [(ngModel)]="cadastrarRotinaModel.de"></p-calendar>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="margem">
+                      <label for="ate">Até: </label>
+                      <p-calendar  [locale]="pt" dateFormat = "dd/mm/yy" required formControlName="ate" [(ngModel)]="cadastrarRotinaModel.ate"></p-calendar>
+                  </div>
+
+                <!--<app-input-field
+                  class="form-group "
+                  formControlName="ate"
+                  [classeCss]="aplicaCssErro('ate')"
+                  id="ate"
+                  label="Até:"
+                  [control]="formulario.get('ate')"
+                  [(ngModel)]="cadastrarRotinaModel.ate"
+                  type="date"
+                  [classe]="'control-label required'"
+                >
+                </app-input-field>-->
+              </div>
+
+            </div>
+
+            <button
+              [disabled]="formulario.invalid"
+              style="margin-right: 10px;"
+              type="submit"
+              class="btn btn-primary btn-flat m-b-30 m-t-30"
+            >
+              Salvar
+            </button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="listarRotinaModel?.length > 0" >
+
+    <div class="col-lg-12 ">
+        <div class="card">
+            <div class="row">
+
+              </div>
+
+
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                          <th scope="col">Funcionário</th>
+                          <th scope="col">Série</th>
+                          <th scope="col">De</th>
+                          <th scope="col">Até</th>
+                          <th scope="col">Ações</th>
+
+                      </tr>
+                  </thead>
+                  <tbody >
+                    <tr *ngFor="let item of listarRotinaModel">
+                        <td>{{item.nomeFuncionario | uppercase}}</td>
+                        <td>{{item.nomeSerie | uppercase}}</td>
+                        <td><p>{{item.de | date:"dd/MM/yyyy" }}</p></td>
+                        <td>{{item.ate | date:"dd/MM/yyyy"}}</td>
+
+                        <td><a  [routerLink]="['/professor/rotina/adicionar-horario',item?.rotinaId]" class="btn btn-outline-primary"> <i class="fa fa-plus" ></i></a>
+                        - <a (click)="imprimir(item.rotinaId)" class="btn btn-outline-secondary"> <i class="fa fa-print"  ></i></a>
+                        - <a (click)="confirm(item.rotinaId)" class="btn btn-outline-danger"> <i class="fa fa-trash"  ></i></a>
+                        </td>
+
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<p-confirmDialog #cd header="Confirma" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" label="Não" (click)="cd.reject()" ></button>
+    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="cd.accept()" ></button>
+</p-footer>
+</p-confirmDialog>
+<p-toast position='top-center' key='f' [style]="{marginTop: '80px'}"></p-toast>

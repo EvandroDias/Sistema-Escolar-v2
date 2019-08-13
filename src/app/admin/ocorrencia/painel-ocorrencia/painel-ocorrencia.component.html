@@ -1,0 +1,59 @@
+<div class="row">
+
+  <div class="col-lg-12">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body" [ng2-loading]="showSpinner">
+        <div class="form-inline">
+          <div class="col-md-2">
+            <label class="check"><input (change)="mudou()" [(ngModel)]="dias" type="radio" class="iradio" value="7"
+                name="iradio" /> 7 Dias</label>
+          </div>
+          <div class="col-md-2">
+            <label class="check"><input (change)="mudou()" [(ngModel)]="dias" type="radio" class="iradio" name="iradio"
+                value="15" /> 15 Dias</label>
+          </div>
+          <div class="col-md-2">
+            <label class="check"><input (change)="mudou()" [(ngModel)]="dias" type="radio" class="iradio" name="iradio"
+                value="30" checked="checked" /> 30 Dias</label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-inline margem">
+          <div class="col-md-2">
+            <label class="check"><input (change)="mudou()" [(ngModel)]="filtro.tipoOcorrenciaId" type="radio"
+                class="iradio" value="Todos" name="iradio" />Todos</label>
+          </div>
+          <div class="col-md-2" *ngFor="let item of tipoOcorrenciaCmbModel">
+            <label class="check"><input (change)="mudou()" [(ngModel)]="filtro.tipoOcorrenciaId" type="radio"
+                class="iradio" [value]="item.id" name="iradio" />{{item.nome}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<div class="row margem">
+
+  <div class="col-lg-12" *ngIf="mostrar">
+    <hr>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-grafico-ocorrencia [filtroOcorrenciaModel]="filtro" width="400" height="400"
+          [Data]="retornoPainel.lineChartDataSerie" [Labels]="retornoPainel.mesSerie" [Type]="tipoGrafico"
+          Legend="true"></app-grafico-ocorrencia>
+      </div>
+    </div>
+
+    <hr>
+    <div class="row">
+
+      <div class="col-lg-12">
+        <app-grafico-ocorrencia [filtroOcorrenciaModel]="filtro" width="400" height="400"
+          [Data]="retornoPainel.lineChartDataAluno" [Labels]="retornoPainel.mesAluno" [Type]="tipoGrafico"
+          Legend="false"></app-grafico-ocorrencia>
+      </div>
+    </div>
+  </div>
+</div>
